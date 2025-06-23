@@ -17,14 +17,14 @@ sbit LCD_EN=P2^7;
   */
 void LCD_Delay()
 {
-	unsigned char i, j;
+    unsigned char i, j;
 
-	i = 2;
-	j = 239;
-	do
-	{
-		while (--j);
-	} while (--i);
+    i = 2;
+    j = 239;
+    do
+    {
+        while (--j);
+    } while (--i);
 }
 
 
@@ -35,13 +35,13 @@ void LCD_Delay()
   */
 void LCD_WriteCommand(unsigned char Command)
 {
-	LCD_RS=0;
-	LCD_RW=0;
-	LCD_DataPort=Command;
-	LCD_EN=1;
-	LCD_Delay();
-	LCD_EN=0;
-	LCD_Delay();
+    LCD_RS=0;
+    LCD_RW=0;
+    LCD_DataPort=Command;
+    LCD_EN=1;
+    LCD_Delay();
+    LCD_EN=0;
+    LCD_Delay();
 }
 
 
@@ -52,13 +52,13 @@ void LCD_WriteCommand(unsigned char Command)
   */
 void LCD_WriteData(unsigned char Data)
 {
-	LCD_RS=1;
-	LCD_RW=0;
-	LCD_DataPort=Data;
-	LCD_EN=1;
-	LCD_Delay();
-	LCD_EN=0;
-	LCD_Delay();
+    LCD_RS=1;
+    LCD_RW=0;
+    LCD_DataPort=Data;
+    LCD_EN=1;
+    LCD_Delay();
+    LCD_EN=0;
+    LCD_Delay();
 }
 
 
@@ -70,14 +70,14 @@ void LCD_WriteData(unsigned char Data)
   */
 void LCD_SetCursor(unsigned char Line,unsigned char Column)
 {
-	if(Line==1)
-	{
-		LCD_WriteCommand(0x80|(Column-1));
-	}
-	else if(Line==2)
-	{
-		LCD_WriteCommand(0x80|(Column-1+0x40));
-	}
+    if(Line==1)
+    {
+        LCD_WriteCommand(0x80|(Column-1));
+    }
+    else if(Line==2)
+    {
+        LCD_WriteCommand(0x80|(Column-1+0x40));
+    }
 }
 
 
@@ -88,10 +88,10 @@ void LCD_SetCursor(unsigned char Line,unsigned char Column)
   */
 void LCD_Init()
 {
-	LCD_WriteCommand(0x38); // 8-bit mode, 2 lines, 5x7 font
-	LCD_WriteCommand(0x0c); // Display ON, cursor OFF, blink OFF
-	LCD_WriteCommand(0x06); // Auto-increment cursor, no shift
-	LCD_WriteCommand(0x01); // Clear display
+    LCD_WriteCommand(0x38); // 8-bit mode, 2 lines, 5x7 font
+    LCD_WriteCommand(0x0c); // Display ON, cursor OFF, blink OFF
+    LCD_WriteCommand(0x06); // Auto-increment cursor, no shift
+    LCD_WriteCommand(0x01); // Clear display
 }
 
 
@@ -104,8 +104,8 @@ void LCD_Init()
   */
 void LCD_ShowChar(unsigned char Line,unsigned char Column,char Char)
 {
-	LCD_SetCursor(Line,Column);
-	LCD_WriteData(Char);
+    LCD_SetCursor(Line,Column);
+    LCD_WriteData(Char);
 }
 
 
@@ -118,12 +118,12 @@ void LCD_ShowChar(unsigned char Line,unsigned char Column,char Char)
   */
 void LCD_ShowString(unsigned char Line,unsigned char Column,char *String)
 {
-	unsigned char i;
-	LCD_SetCursor(Line,Column);
-	for(i=0;String[i]!='\0';i++)
-	{
-		LCD_WriteData(String[i]);
-	}
+    unsigned char i;
+    LCD_SetCursor(Line,Column);
+    for(i=0;String[i]!='\0';i++)
+    {
+        LCD_WriteData(String[i]);
+    }
 }
 
 
@@ -135,13 +135,13 @@ void LCD_ShowString(unsigned char Line,unsigned char Column,char *String)
   */
 int LCD_Pow(int X,int Y)
 {
-	unsigned char i;
-	int Result=1;
-	for(i=0;i<Y;i++)
-	{
-		Result*=X;
-	}
-	return Result;
+    unsigned char i;
+    int Result=1;
+    for(i=0;i<Y;i++)
+    {
+        Result*=X;
+    }
+    return Result;
 }
 
 
@@ -155,12 +155,12 @@ int LCD_Pow(int X,int Y)
   */
 void LCD_ShowNum(unsigned char Line,unsigned char Column,unsigned int Number,unsigned char Length)
 {
-	unsigned char i;
-	LCD_SetCursor(Line,Column);
-	for(i=Length;i>0;i--)
-	{
-		LCD_WriteData(Number/LCD_Pow(10,i-1)%10+'0');
-	}
+    unsigned char i;
+    LCD_SetCursor(Line,Column);
+    for(i=Length;i>0;i--)
+    {
+        LCD_WriteData(Number/LCD_Pow(10,i-1)%10+'0');
+    }
 }
 
 
