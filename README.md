@@ -11,7 +11,8 @@ This project implements a classic **"Guess the 4-digit number"** game. The syste
 If the player guesses correctly within 7 tries, they win. Otherwise, the correct answer is revealed.
 
 ## 🎮 Demo
-![GuessNum_Demo](https://github.com/user-attachments/assets/e5b08322-314c-4214-b4de-5d551977902e)
+<img src="https://github.com/user-attachments/assets/e5b08322-314c-4214-b4de-5d551977902e" width="640" height="360" alt="GuessNum_Demo">
+
 > Entering digits, confirming guesses, viewing history, and game reset in action.
 
 ## 💡 Features
