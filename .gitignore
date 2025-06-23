@@ -1,0 +1,19 @@
+# Ignore build output
+Objects/
+Listings/
+*.lst
+*.obj
+*.lnp
+*.hex
+*.map
+*.bak
+*.tmp
+*.log
+*.m51
+*.htm
+
+# Ignore user-specific IDE settings
+*.uvgui.*
+*.uvoptx
+*.bak
+*.depend
